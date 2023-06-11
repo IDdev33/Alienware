@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Checkout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Main.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+{% include 'basescripts.html' %}
+</head>
+<body>
+
+<!--Logo-->
+<header style="text-align: center;">
+<img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+</header>
+{% if messages %}
+  <div class="alert text-center alert-danger">
+    {% for message in messages %}
+      <h4>{{message}}</h4>
+    {% endfor %}
+  </div>
+{% endif %}
+{% if profile_info_retrieved %}
+    <div class="alert alert-info text-center fw-bold" role="alert">
+        Your information was retrieved from your profile.
+    </div>
+{% endif %}
+
+<form method="post" id="form">
+    {%csrf_token%}
+<div style="border-radius: 10px;" class="container border border-info p-3 shadow-lg bg-white padding-bottom-3x mb-5">
+<div class="row">
+<div class="col-lg-6">
+<div class="box-element text-center" id="form-wrapper">
+<div class="container" id="user-info">
+	<div class="row">
+    <h5 class="text-info"><i class="fa-solid fa-circle-info"></i> General Information:</h5>
+<div class="form-field col-6">
+<input autocomplete="off" required class="form-control" value="{{user.first_name}}" type="text" name="first_name" placeholder="First Name">
+</div>
+<div class="form-field col-6">
+	<input autocomplete="off" required class="form-control" value="{{user.last_name}}" type="text" name="last_name" placeholder="Last Name">
+	</div>
+<div class="form-field col-12">
+<input autocomplete="off" required class="form-control" value="{{user.email}}" type="email" name="email" placeholder="Email..">
+</div>
+</div>
+</div>
+
+<div class="container" id="shipping-info">
+<hr>
+<h5 class="text-info"><i class="fa-solid fa-truck-fast"></i> Shipping Information:</h5>
+<hr>
+<div class="form-field">
+<input required autocomplete="off" class="form-control" value="{{profile.address}}" type="text" name="address" placeholder="Address..">
+</div>
+<div class="form-field">
+<input required autocomplete="off" class="form-control" value="{{profile.city}}" type="text" name="city" placeholder="City..">
+</div>
+<div class="form-field">
+<input required autocomplete="off" class="form-control" value="{{profile.state}}" type="text" name="state" placeholder="State..">
+</div>
+<div class="form-field">
+<input required autocomplete="off" class="form-control" type="text" value="{{profile.zipcode}}" name="zipcode" placeholder="Zip code..">
+</div>
+
+</div>
+
+<hr>
+
+</div>
+<br>
+
+<div class="container" id="payment-info">
+    <hr>
+    <h5 class="text-center text-info">Payment Details:</h5>
+    <hr>
+    <div class="row">
+       
+    <div class="form-field col-6">
+        <label for="ccn" class="col-form-label">Credit Card Number</label>    
+        <input required autocomplete="off" name="ccn" class="form-control" id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" required maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+    </div>
+    <div class="form-field col-6">
+        <label class="col-form-label" for="cardName">Cardholder Name</label>
+        <input required autocomplete="off" name="cardName" type="text" class="form-control" id="cardName" placeholder="Enter name on card" required>
+    </div>
+    <div class="form-field col-6">
+        <label class="col-form-label" for="expiry-date">Expiration Date</label>
+        <input required autocomplete="off" class="form-control" type="text" id="expiry-date" name="expiry_date" placeholder="MM/YY" required>
+    </div>
+    <div class="form-field col-6">
+        <label class="col-form-label" for="cvv">Cvv</label>
+        <input required autocomplete="off" class="form-control" type="text" id="cvv" name="cvv" placeholder="123" required>
+    </div>
+    
+</div>
+<button style="margin: 0 auto; display: block;" class="btn mt-3" id="make-payment">Pay ${{order.get_cart_total}} </button>
+    </div>
+
+
+
+</div>
+
+<div class="col-lg-6">
+<div class="box-element text-center">
+<a class="btn btn-outline-info m-5" href="/cart">&#x2190; Back to Cart</a>
+<hr>
+<h3>Order Summary</h3>
+<hr>
+
+{% for item in items %}
+<div class="cart-row justify-content-evenly">
+<div style="flex:2; max-width: 150px;"><img class="row-image" src="{{item.product.image_url}}"></div>
+<div style="flex:2"><p style="font-size: 14px;">{{item.product.name}}</p></div>
+<div style="flex:1"><p>{{item.product.price}}</p></div>
+<div style="flex:1"><p>x{{item.quantity}}</p></div>
+</div>
+{% endfor %}
+
+<h5 class="fw-bold" style="text-align: right;">Items:   {{order.get_cart_items}}</h5>
+<h5  class="fw-bold" style="text-align: right;">Total:   ${{order.get_cart_total}}</h5>
+<div class="bottom-line"></div>
+</div>
+</div>
+</div>
+</div>
+</form>
+{% include 'footer.html' %}
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+
+
+
+</body>
+</html>

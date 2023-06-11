@@ -1,0 +1,217 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Alienware</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Main.css' %}">
+{% include 'basescripts.html' %}
+</head>
+<body>
+
+
+<!--Navigation Bar-->
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container-fluid">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+<a target="_blank" class="navbar-brand center-mobile me-auto"  href="https://www.dell.com/en-us/shop/dell-laptops/sf/alienware-laptops">
+<img id="alien-logo" class="ms-5" src="{% static 'Assets/imgs/alienlogo.png' %}" />
+</a>
+{% if user.is_authenticated %}
+<span id="welcome" class="text-info hide-mobile me-auto">Welcome, {{user.username}}!</span>
+{% endif %}
+
+<ul class="navbar-nav mx-auto">
+<li class="nav-item active">
+<a class="nav-link text-dark" href="/">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-dark" href="#products">Products</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-dark" href="#disclaimer">Disclaimer</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link mx-1 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+Register
+</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<li><a class="dropdown-item" href="/register"><i class="fa fa-user-plus"></i>  Sign Up</a></li>
+<li><a class="dropdown-item" href="/login"><i class="fa fa-user"></i>  Log In</a></li>
+</ul>
+</li>
+</ul>
+
+<ul class="navbar-nav ms-auto">
+{% if user.is_authenticated %}
+<ul class="navbar-nav">
+{% if has_profile_picture %}
+<li id="profile_picture" class="nav-item">
+<img class="hide-mobile rounded-pill" id="profile-photo" src="{{  request.user.profile.profile_picture.url }}" alt="Profile picture">
+</li>
+{% endif %}
+<li id="profile" class="nav-item">
+<a class="nav-link logout active" aria-current="page" href="/profile">Profile</a>
+</li>
+<li id="logout" class="nav-item">
+<a class="nav-link logout active" aria-current="page" href="/logout">Log Out</a>
+</li>
+</ul>
+{% else %}
+{% endif %}    
+<li class="nav-item">
+<a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i> Cart<p id="cart-total">{{cartItems}}</p></a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<button
+        type="button"
+        class="btn btn-info rounded-pill btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+{% for message in messages %}
+<h5 class="text-success text-center">{{message}}</h5>
+{% endfor %}
+
+<header style="text-align: center;">
+<img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+</header>
+<div class="container-fluid intro">
+    <div class="row">
+      <div class="col-lg-8 order-lg-1">
+        <img class="img-fluid" src="{% static 'Assets/imgs/BackgroundRemover.png' %}" alt="Alienware-Full-Set">
+      </div>
+      <div class="col-lg-4 mt-5 text-center order-lg-2">
+        <h1 class="intro-h1 text-info">Gear Up For Better Gaming</h1>
+        <p class="intro-p">Experience Performance, Style and Innovation with Alienware</p>
+        <button class="btn border intro-b border-info border-2 rounded-pill" type="button"><a style="all: unset;" href="#products">Shop Alienware</a></button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+<div class="container-fluid intro animated">
+<div class="row">
+<div class="col-lg-4 text-center mb-5 order-lg-2 mt-5">
+<h1 class="intro-h1 text-info">Total Control</h1>
+<p class="intro-p">Command Center that gives you total control over your machine, includes Overclocking
+, Performance Overlay, AlienFX(Lightning Settings) and AlienVision(Monitor-based overlays)
+</p>
+<button class="btn border intro-b border-info border-2 rounded-pill" type="button"><a style="all: unset;" target="_blank" href="https://www.dell.com/support/manuals/en-us/alienware-13/alienwarecommandcenter5_userguide#:~:text=Alienware%20Command%20Center%20provides%20a,and%20access%20to%20computer%20settings.">Read More</a></button>
+</div>
+<div class="col-lg-8 order-lg-1">
+<img class="img-fluid" src="{% static 'Assets/imgs/BackgroundRemover2.png' %}" alt="Alienware-Full-Set">
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="container-fluid intro animated">
+<div class="row">
+<div class="col-lg-8 order-lg-1">
+<img class="img-fluid" src="{% static 'Assets/imgs/BackgroundRemover4.png' %}" alt="Alienware-Full-Set">
+</div>
+<div class="col-lg-4 text-center order-lg-2 mt-5">
+<h1 class="intro-h1 text-info">Your Dream Setup Starts Here</h1>
+<p class="intro-p">Desktops, Monitors, Laptops and Accessories. We've got you covered.</p>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+
+<!-- Page Content -->
+<div class="container shadow-lg intro-2">
+<h1 id="products" class="intro-h1 text-center text-info mt-2 p-2">Browse Our Products</h1>
+<div class="line"></div>
+<div class="row">
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Desktop.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/desktops">Shop Desktops</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Monitor.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/monitors">Shop Monitors</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Laptop.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/laptops">Shop Laptops</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Keyboard.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/keyboards">Shop Keyboards</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Mouse.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/mice">Shop Mice</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Headphone.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/headsets">Shop Headsets</a></button>
+</div>
+<div class="col-6 box">
+<img id="chair" class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Chair.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/chairs">Shop Chairs</a></button>
+</div>
+<div class="col-6 box">
+<img class="img-fluid card1" src="{% static 'Assets/imgs/Cards/Case.png' %}">
+<button class="btn border mb-3 intro-b border-info border-2 rounded-pill" type="button"><a  style="all: unset;" href="/bags">Shop Bags & Cases</a></button>
+</div>
+</div>
+</div>
+<br>
+<br>
+  <div id="disclaimer" class="container-fluid outro">
+    <div class="row text-center">
+    <div class="col-lg-6 order-lg-1">
+    <img class="img-fluid" src="{% static 'Assets/imgs/disclaimer.jpg' %}" alt="Alienware-Full-Set">
+    </div>
+    <div class="col-lg-6 order-lg-2 mt-5">
+    <h1 class="intro-h1 text-info">This is an Alienware themed website</h1>
+    <p class="outro-p">Most images you see on here along with the information about the products belong to <a href="https://www.dell.com/en-us"><img src="{% static 'Assets/imgs/icons8-dell-32.png' %}"></a>
+        Technologies. This is simply my personal E-commerce project, themed behind Dell's Alienware excellent brand.</p> 
+        
+     <p class="outro-p">You can't actually buy anything from here. If you like
+        their products, go to this <a style="color: #5bc0de;"  href="https://www.dell.com/en-us/shop/dell-laptops/sf/alienware-laptops">link</a> and browse their awesome collection! </p>
+    </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+<footer class="bg-dark text-center text-lg-start">
+<!-- Copyright -->
+<div class="text-center text-info p-3" style="background-color: rgba(0, 0, 0, 1);">
+©2023 Copyright: All Rights Reserved.
+</div>
+</footer>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+<script src="{% static 'Assets/js/AnimationFunctions.js' %}"></script>
+</body>
+</html>

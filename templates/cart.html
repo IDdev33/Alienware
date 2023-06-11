@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cart</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Main.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Cart.css' %}">
+{% include 'basescripts.html' %}
+
+</head>
+<body>
+
+<!--Logo-->
+<header style="text-align: center;">
+    <img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+    </header>
+
+<!-- Shopping Cart-->
+
+<div style="border-radius: 10px;" class="container border border-info p-3 shadow-lg bg-white padding-bottom-3x mb-5">
+    <div class="table-responsive shopping-cart">
+    <table class="table">
+    <thead>
+    <tr>
+    <th>Product Name</th>
+    <th class="text-center">Quantity</th>
+    <th class="text-center">Price</th>
+    <th class="text-center">Total</th>
+    <th class="text-center">Clear Cart</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+    <tr>
+    <td>
+    <div class="product-item">
+    <img class="product-thumb" src="{{item.product.image_url}}" alt="{{ item.product.name }}">
+    <div class="product-info">
+    <span>{{item.product.name}}</span>
+    </div>
+    </div>
+    </td>
+    <td class="text-center">
+        <p data-product={{item.product.id}} data-action="add" class="update-cart arrows"><i class="fa fa-arrow-up" style="color: #5bc0de;"></i></p>
+        <p id="quantity">{{item.quantity}}</p>
+        <p data-product={{item.product.id}} data-action="decrease" class="update-cart arrows"><i class="fa fa-arrow-down" style="color: #5bc0de;"></i></p>
+    <td class="text-center text-lg text-medium">&nbsp;${{item.product.price}}</td>
+    <td class="text-center text-lg text-medium">${{item.get_total}}</td>
+    <td class="text-center"><button data-product="{{item.product.id}}" data-action='remove' class="btn btn-danger update-cart remove-from-cart">Remove</button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+<div class="shopping-cart-footer">
+<div class="column">
+</div>
+<div class="column"><p class="total">Total: ${{order.get_cart_total|floatformat:2}}</p></div>
+</div>
+<div class="shopping-cart-footer">
+<div class="column"><a class="btn btn-info" href="/">Back to Shopping</a></div>
+<div class="column"><a class="btn btn-success" href="/checkout">Checkout</a></div>
+</div>
+</div>
+<p style="display: none;" id="cart-total"></p>
+
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Register</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+</head>
+<body>
+
+<!--Logo-->
+<header style="text-align: center;">
+<img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+</header>
+
+<div class="container-fluid mx-auto">
+<div class="row align-items-center">
+<div class="col-12 col-md-6 order-2 order-md-1 mb-4 mb-md-0">
+<!--Form-->
+<form autocomplete="off" action="register" method="POST" class="row g-3">
+{% csrf_token %}
+<h1 class="text-center">Create an Account</h1>
+<!--Error messages-->
+{% for message in messages %}
+<h4>{{message}}</h4>
+{% endfor %}
+
+<div class="col-md-6">
+<label class="form-label"><i class="fa fa-user icon"></i> User Name</label>
+<input  required name="username" type="text" class="form-control">
+</div>
+<div class="col-md-6"></div>
+<div class="col-md-6">
+<label class="form-label"><i class="fa fa-user icon"></i> First Name</label>
+<input  required name="first_name" type="text" class="form-control">
+</div>
+<div class="col-md-6">
+<label class="form-label"><i class="fa fa-user icon"></i> Last Name</label>
+<input  required name="last_name" type="text" class="form-control">
+</div>
+<div class="col-12">
+<label class="form-label"> <i class="fa fa-envelope icon"></i> Email</label>
+<input required name="email" type="email" class="form-control">
+</div>
+<div class="col-md-6">
+<label class="form-label"><i class="fa fa-key icon"></i> Password</label>
+<input  required name="password" type="password" class="form-control">
+</div>
+<div class="col-md-6">
+<label class="form-label"><i class="fa fa-key icon"></i> Confirm Password</label>
+<input  required name="password2" type="password" class="form-control">
+</div>
+<div class="col-12 text-center">
+<button type="submit" class="btn btn-info">Sign Up</button>
+</div>
+</form>
+</div>
+<div class="col-12 col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+<img style="width: 500px;" class="img-fluid mx-auto d-block mb-3 mb-md-0" id="img" src="{% static 'Assets/imgs/support-banner.jpg' %}">
+</div>
+</div>
+</div>
+
+
+<hr>
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

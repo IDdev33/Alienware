@@ -1,0 +1,146 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thank You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/receipt.css' %}">
+</head>
+<body>
+<header style="text-align: center;">
+<img style="width: 10%; display: inline;" class="img-fluid" id="logo" src="{% static 'Assets/imgs/Alienware head.png' %}">
+</header>
+<h1 id="thanks" style="text-align: center;">Thank You For Your Purchase!</h1>
+
+<table id="receipt-table" class="body-wrap">
+<tbody><tr>
+<td></td>
+<td class="container" width="600">
+<div class="content">
+<table class="main" width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="content-wrap aligncenter">
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="content-block">
+<h2 class="text-center text-info">
+Your Order Has Been Placed!
+</h2>
+</td>
+</tr>
+<tr>
+<td class="content-block">
+<table class="invoice">
+<tbody><tr>
+<td class="fw-bold">
+    <br>Name: {{first_name}} {{last_name}}
+    <br>Email: {{email}}
+    <br>Invoice: {{ invoice_number }}
+    <br>Date: {{date_ordered}}
+    <br>Items: x{{receipt.order.get_cart_items}}</td>
+</tr>
+<tr>
+<td>
+<table class="invoice-items" cellpadding="0" cellspacing="0">
+<tbody>
+    {% for item in receipt.order.orderitem_set.all %}
+<tr>
+<td>{{item.product.name}}</td>
+<td class="alignright">$ {{item.product.price}}</td>
+</tr>
+{% endfor %}
+<tr class="total">
+<td class="alignright" width="80%">Total</td>
+<td class="alignright">${{receipt.order.get_cart_total}}</td>
+</tr>
+<tr>
+</tr>
+
+
+
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+<tr>
+    <div class="aligncenter">
+        <button style="margin-right: 100px;" class="btn btn-info"><a id="home-button" href="/" style="all: unset;"><i class="fa-solid fa-house"></i> Home</a></button>
+        <button onclick="printReceipt()" style="margin-left: 100px;" class="btn btn-info"><i class="fa fa-print"></i> Print Receipt</button>
+        </div>
+</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+        {% include 'footer.html' %}
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+<script>
+    function printReceipt() {
+      // Get the receipt table element
+      var receiptTable = document.getElementById("receipt-table");
+      
+      // Create a new window for printing
+      var printWindow = window.open('', '', 'height=500,width=800');
+      
+      // Write the receipt table HTML and CSS to the new window
+      printWindow.document.write('<html><head><title>Receipt</title>');
+      printWindow.document.write('<link rel="stylesheet" href="{% static "Assets/css/bootstrap.min.css" %}">');
+      printWindow.document.write('<link rel="stylesheet" href="{% static "Assets/css/Register.css" %}">');
+      printWindow.document.write('<link rel="stylesheet" href="{% static "Assets/css/receipt.css" %}">');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(receiptTable.outerHTML);
+      printWindow.document.write('</body></html>');
+      
+      // Print the new window
+      printWindow.print();
+    }
+    </script>
+    
+    <script type="text/javascript">
+	
+        document.getElementById('home-button').addEventListener('click', function(e){
+            clearGuestCart()
+        })
+    
+        function clearGuestCart() {
+          console.log('Payment button clicked');
+          cart = {};
+          document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
+    }
+    </script>
+  
+
+
+
+</body>

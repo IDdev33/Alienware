@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+</head>
+<body>
+
+<header style="text-align: center;">
+<img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+</header>
+
+<div class="container">
+<div class="row">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+<div class="card-body">
+<div class="account-settings">
+<div class="user-profile">
+<div class="user-avatar">
+<form autocomplete="off" enctype="multipart/form-data" action="profile" method="POST">    
+
+{% csrf_token %}
+{% if profile.profile_picture %}
+<img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+{% endif %}
+
+</div>
+<h5 class="user-name">{{user.first_name}} {{user.last_name}}</h5>
+<h6 class="user-email">{{user.email}}</h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+<div class="card-body">
+<div class="row">
+{% csrf_token %}
+{% if user.is_authenticated %}
+<h1 class="form-header text-info">Welcome {{user.username}}!</h1>
+{% else %}
+{% endif %}
+<h5 class="text-primary">Update your profile</h5>
+<div class="row">
+<div class="col-md-6">
+<label class="form-label">First Name</label>
+<input id="first_name" value="{{ user.first_name }}"  name="first_name" type="text" class="form-control">
+</div>
+<div class="col-md-6">
+<label class="form-label">Last Name</label>
+<input id="last_name" value="{{ user.last_name }}"  name="last_name" type="text" class="form-control">
+</div>
+</div>
+<div class="row">
+<div class="col-6">
+<label class="form-label">Address</label>
+<input id="address" value="{{ profile.address }}" name="address" placeholder="Example: 1234 Main St" type="text" class="form-control">
+</div>
+<div class="col-6">
+    <label class="form-label">City</label>
+    <input id="city" value="{{ profile.city }}" name="city" type="text" class="form-control">
+    </div>
+</div>
+<div class="row">
+<div class="col-6">
+<label for="state" class="form-label">State</label>
+<input id="state" value="{{ profile.state }}" name="state" type="text" class="form-control">
+</div>
+<div class="col-6">
+<label class="form-label">Zip Code</label>
+<input id="zipcode" name="zipcode" value="{{ profile.zipcode }}" type="text" class="form-control">
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+<label class="form-label" for="profile_picture">Upload a Profile Picture:</label>
+<input class="form-control" type="file" name="profile_picture" id="profile_picture">
+</div>
+</div>
+<div class="row">
+<div class="col-6 text-center">
+<button class="btn btn-secondary m-2"><a style="all: unset;" href="/">Cancel</a></button>
+</div>
+<div class="col-6 text-center">
+<button id="update_button" type="submit" class="btn btn-info m-2">Update</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+<script>
+    //Profile Update button
+  const first_name = document.querySelector('#first_name');
+  const last_name = document.querySelector('#last_name');
+  const address = document.querySelector('#address');
+  const country = document.querySelector('#city');
+  const state = document.querySelector('#state');
+  const zip = document.querySelector('#zipcode');
+  const profile_picture = document.querySelector('#profile_picture');
+  const update_button = document.querySelector('#update_button');
+
+  // Add an event listener to each input field
+  first_name.addEventListener('input', enableUpdateButton);
+  last_name.addEventListener('input', enableUpdateButton);
+  address.addEventListener('input', enableUpdateButton);
+  country.addEventListener('input', enableUpdateButton);
+  state.addEventListener('input', enableUpdateButton);
+  zip.addEventListener('input', enableUpdateButton);
+  profile_picture.addEventListener('input', enableUpdateButton);
+
+  // Define the event listener function
+  function enableUpdateButton() {
+    // Check if any of the input fields have a non-empty value
+    const hasValue = [
+      first_name,
+      last_name,
+      address,
+      city,
+      state,
+      zipcode,
+      profile_picture,
+    ].some((input) => input.value.trim() !== '');
+
+    // Enable or disable the update button accordingly
+    update_button.disabled = !hasValue;
+  }
+
+
+</script>
+
+
+</body>
+</html>

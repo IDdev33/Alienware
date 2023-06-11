@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Log In</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+</head>
+<body>
+
+<!--Logo-->
+<header style="text-align: center;">
+<img id="logo" src="{% static 'Assets/imgs/alienware-logo-black-and-white.png' %}">
+</header>
+
+<div class="container-fluid mx-auto">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 order-2 order-md-1 mb-4 mb-md-0">
+       <!--Form-->
+<form autocomplete="off" action="login" method="POST" class="row g-3">
+    {% csrf_token %}
+    <h1>Log In</h1>
+    <div class="col-md-8">
+    <i class="fa fa-user icon"></i>
+    <label class="form-label">User Name</label>
+    <input required name="username" type="text" class="form-control">
+    </div>
+    <div class="col-md-8">
+    <i class="fa fa-key icon"></i>
+    <label required class="form-label">Password</label>
+    <input name="password" type="password" class="form-control">
+    </div>
+    
+    <div class="col-12">
+    <button type="submit" class="btn btn-info">Log In</button>
+    </div>
+    </form>
+      </div>
+      <div class="col-12 col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+        <img style="border: none; width: 450px;" class="img-fluid mx-auto d-block mb-3 mb-md-0" id="img" src="{% static 'Assets/imgs/dell-gen-laptops-alienware-x15nt-1440x1440.avif' %}">
+      </div>
+    </div>
+  </div>
+  
+
+
+<!--Error messages-->
+{% for message in messages %}
+<h4>{{message}}</h4>
+{% endfor %}
+
+
+
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

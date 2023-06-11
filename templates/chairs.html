@@ -1,0 +1,448 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alienware Chairs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'Assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Main.css' %}">
+<link rel="stylesheet" href="{% static 'Assets/css/Register.css' %}">
+{% include 'basescripts.html' %}
+
+</head>
+<body>
+
+<!--Navigation Bar-->
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container-fluid">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+<a class="navbar-brand center-mobile me-auto" target="_blank" href="https://www.dell.com/en-us/shop/dell-laptops/sf/alienware-laptops">
+<img id="alien-logo" class="ms-5" src="{% static 'Assets/imgs/alienlogo.png' %}" />
+</a>
+{% if user.is_authenticated %}
+<span id="welcome" class="text-info hide-mobile me-auto">Welcome aboard, {{user.username}}!</span>
+{% endif %}
+
+<ul class="navbar-nav mx-auto">
+<li class="nav-item active">
+<a class="nav-link text-dark" href="/">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-dark" href="#products">Products</a>
+</li>
+<li class="nav-item">
+<a class="nav-link text-dark" href="#disclaimer">Disclaimer</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link mx-1 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+Register
+</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<li><a class="dropdown-item" href="/register"><i class="fa fa-user-plus"></i>  Sign Up</a></li>
+<li><a class="dropdown-item" href="/login"><i class="fa fa-user"></i>  Log In</a></li>
+</ul>
+</li>
+</ul>
+
+<ul class="navbar-nav ms-auto">
+{% if user.is_authenticated %}
+<ul class="navbar-nav">
+{% if has_profile_picture %}
+<li id="profile_picture" class="nav-item">
+<img class="hide-mobile" id="profile-photo" src="{{  request.user.profile.profile_picture.url }}" alt="Profile picture">
+</li>
+{% endif %}
+<li id="profile" class="nav-item">
+<a class="nav-link logout active" aria-current="page" href="/profile">Profile</a>
+</li>
+<li id="logout" class="nav-item">
+<a class="nav-link logout active" aria-current="page" href="/logout">Log Out</a>
+</li>
+</ul>
+{% else %}
+{% endif %}    
+<li class="nav-item">
+<a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i> Cart<p id="cart-total">{{cartItems}}</p></a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+
+<button
+        type="button"
+        class="btn btn-info rounded-pill btn-floating btn-lg"
+        id="btn-back-to-top"
+        >
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+{% for message in messages %}
+<h5 class="text-success text-center">{{message}}</h5>
+{% endfor %}
+
+
+
+<div class="container-fluid intro">
+<div class="row">
+<div class="col-lg-6 order-lg-2 mt-5">
+<h1 class="intro-h1 text-info">Hygenn X</h1>
+<p class="intro-p">A combination of coffee ground infused microfiber 
+and silver coated embroidery, enabling the material to limit odor
+and increase breathability. The silver coated embroidery inhibits
+bacterial activity to maintain cleanliness and comfort in the
+areas most sat on during long hours of intense gameplay.
+</p>
+</div>
+<div class="col-lg-6 order-lg-1">
+<img class="img-fluid" src="{% static 'Assets/imgs/Headers/Chair1.png' %}" alt="Alienware Mouse">
+</div>
+</div>
+</div>
+<br>
+<br>
+
+<div class="container-fluid intro animated">
+<div class="row">
+<div class="col-lg-6 order-lg-2">
+<img class="img-fluid" src="{% static 'Assets/imgs/Headers/Chair2.png' %}" alt="Alienware-Full-Set">
+</div>
+<div class="col-lg-6 order-lg-1 mt-5">
+<h1 class="intro-h1 text-info">Effortless Assembly</h1>
+<p class="intro-p">Our patented “Slide-in” hardware allows
+for a quick and easy one-person assembly.
+The chair can be assembled in seconds by 
+simply sliding the backrest into the seat,
+removing any alignment and hardware complexities for a hassle-free, one-person process.
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+
+
+<!--Chairs carousels (No Caption):-->
+<p id="products"></p>
+<div class="shop-items border border-info p-3 shadow-lg bg-white">
+<div class="shop-item">
+<h1 class="shop-item-title text-center">{{chair1.name}}</h1>
+<br>
+<div class="chair-carousel">
+<div id="carousel1" class="carousel slide" data-interval="true" data-bs-ride="false"  data-wrap="true">
+<div class="carousel-indicators mt-5 bg-info">
+<button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel1" data-bs-slide-to="3" aria-label="Slide 4"></button>
+</div>
+<div class="carousel-inner" data-mdb-interval="1000">
+<div class="carousel-item active" data-product-id="6">
+<img src="{{ chair1.image.all.0.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair1.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair1.image.all.1.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair1.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair1.image.all.2.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair1.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair1.image.all.3.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair1.name}}">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div> 
+<div class="description">
+<h3>Specs:</h3>
+<br>
+<ul>
+  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
+    <a href="{{ chair1.reviews_url }}" target="_blank">{{ chair1.reviews_score }}</a>
+    <div style="display: inline;" class="stars">
+        {% star_rating chair1.reviews_score as star_rating %}
+        {% for star in star_rating.stars %}
+            {% if star == 'full' %}
+                <i class="fa-solid fa-star text-info"></i>
+            {% elif star == 'half' %}
+                <i class="fa-solid fa-star-half-alt text-info"></i>
+            {% else %}
+                <i class="fa-regular fa-star"></i>
+            {% endif %}
+        {% endfor %}
+    </div></li>
+<li>{{chair1.spec1}}</li>
+<li>{{chair1.spec2}}</li>
+<li>{{chair1.spec3}}</li>
+<li>{{chair1.spec4}}</li>
+<li id="price">Price:<div class="shop-item-price">&nbsp;${{chair1.price}}</div></li>
+
+</ul>
+<div class="btn-div">
+<button data-product="{{chair1.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button"><i class="fa fa-cart-arrow-down"></i>Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>     
+<br>
+<hr>
+
+<div class="shop-items border border-info p-3 shadow-lg bg-white">
+<div class="shop-item">
+<h1 class="shop-item-title">{{chair2.name}}</h1>
+<br>
+<div class="chair-carousel">
+<div id="carousel2" class="carousel slide" data-interval="true" data-bs-ride="false"  data-wrap="true">
+<div class="carousel-indicators mt-5 bg-info">
+<button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel2" data-bs-slide-to="4" aria-label="Slide 5"></button>
+</div>
+<div class="carousel-inner" data-mdb-interval="1000">
+<div class="carousel-item active" data-product-id="6">
+<img src="{{ chair2.image.all.0.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair2.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair2.image.all.1.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair2.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair2.image.all.2.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair2.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair2.image.all.3.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair2.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair2.image.all.4.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair2.name}}">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div> 
+<div class="description">
+<h3>Specs:</h3>
+<br>
+<ul>
+  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
+    <a href="{{ chair2.reviews_url }}" target="_blank">{{ chair2.reviews_score }}</a>
+    <div style="display: inline;" class="stars">
+        {% star_rating chair2.reviews_score as star_rating %}
+        {% for star in star_rating.stars %}
+            {% if star == 'full' %}
+                <i class="fa-solid fa-star text-info"></i>
+            {% elif star == 'half' %}
+                <i class="fa-solid fa-star-half-alt text-info"></i>
+            {% else %}
+                <i class="fa-regular fa-star"></i>
+            {% endif %}
+        {% endfor %}
+    </div></li>
+<li>{{chair2.spec1}}</li>
+<li>{{chair2.spec2}}</li>
+<li>{{chair2.spec3}}</li>
+<li>{{chair2.spec4}}</li>
+<li>{{chair2.spec5}}</li>
+<li>{{chair2.spec6}}</li>
+<li id="price">Price:<div class="shop-item-price">&nbsp;${{chair2.price}}</div></li>
+</ul>
+<div class="btn-div">
+<button data-product="{{chair2.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button"><i class="fa fa-cart-arrow-down"></i>Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>     
+<br>
+<hr>
+
+<div class="shop-items border border-info p-3 shadow-lg bg-white">
+<div class="shop-item">
+<h1 class="shop-item-title">{{chair3.name}}</h1>
+<br>
+<div class="chair-carousel">
+<div id="carousel3" class="carousel slide" data-interval="true" data-bs-ride="false"  data-wrap="true">
+<div class="carousel-indicators mt-5 bg-info">
+<button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+</div>
+<div class="carousel-inner" data-mdb-interval="1000">
+<div class="carousel-item active" data-product-id="6">
+<img src="{{ chair3.image.all.0.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair3.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair3.image.all.1.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair3.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair3.image.all.2.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair3.name}}">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div> 
+<div class="description">
+<h3>Specs:</h3>
+<br>
+<ul>
+  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
+    <a href="{{ chair3.reviews_url }}" target="_blank">{{ chair3.reviews_score }}</a>
+    <div style="display: inline;" class="stars">
+        {% star_rating chair3.reviews_score as star_rating %}
+        {% for star in star_rating.stars %}
+            {% if star == 'full' %}
+                <i class="fa-solid fa-star text-info"></i>
+            {% elif star == 'half' %}
+                <i class="fa-solid fa-star-half-alt text-info"></i>
+            {% else %}
+                <i class="fa-regular fa-star"></i>
+            {% endif %}
+        {% endfor %}
+    </div></li>
+<li>{{chair3.spec1}}</li>
+<li>{{chair3.spec2}}</li>
+<li>{{chair3.spec3}}</li>
+<li>{{chair3.spec4}}</li>
+<li>{{chair3.spec5}}</li>
+<li>{{chair3.spec6}}</li>
+<li id="price">Price:<div class="shop-item-price">&nbsp;${{chair3.price}}</div></li>
+</ul>
+<div class="btn-div">
+<button data-product="{{chair3.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button"><i class="fa fa-cart-arrow-down"></i>Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>     
+<br>
+<hr>
+
+<div class="shop-items border border-info p-3 shadow-lg bg-white">
+<div class="shop-item">
+<h1 class="shop-item-title">{{chair4.name}}</h1>
+<br>
+<div class="chair-carousel">
+<div id="carousel4" class="carousel slide" data-interval="true" data-bs-ride="false"  data-wrap="true">
+<div class="carousel-indicators mt-5 bg-info">
+<button type="button" data-bs-target="#carousel4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel4" data-bs-slide-to="1" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel4" data-bs-slide-to="2" aria-label="Slide 3"></button>
+</div>
+<div class="carousel-inner" data-mdb-interval="1000">
+<div class="carousel-item active" data-product-id="6">
+<img src="{{ chair4.image.all.0.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair4.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair4.image.all.1.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair4.name}}">
+</div>
+<div class="carousel-item">
+<img src="{{ chair4.image.all.2.image.url }}" class="d-block w-100 shop-item-image" alt="{{chair4.name}}">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carousel4" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel4" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div> 
+<div class="description">
+<h3>Specs:</h3>
+<br>
+<ul>
+  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
+    <a href="{{ chair4.reviews_url }}" target="_blank">{{ chair4.reviews_score }}</a>
+    <div style="display: inline;" class="stars">
+        {% star_rating chair4.reviews_score as star_rating %}
+        {% for star in star_rating.stars %}
+            {% if star == 'full' %}
+                <i class="fa-solid fa-star text-info"></i>
+            {% elif star == 'half' %}
+                <i class="fa-solid fa-star-half-alt text-info"></i>
+            {% else %}
+                <i class="fa-regular fa-star"></i>
+            {% endif %}
+        {% endfor %}
+    </div></li>
+<li>{{chair4.spec1}}</li>
+<li>{{chair4.spec2}}</li>
+<li>{{chair4.spec3}}</li>
+<li>{{chair4.spec4}}</li>
+<li>{{chair4.spec5}}</li>
+<li>{{chair4.spec6}}</li>
+<li id="price">Price:<div class="shop-item-price">&nbsp;${{chair4.price}}</div></li>
+</ul>
+<div class="btn-div">
+<button data-product="{{chair4.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button"><i class="fa fa-cart-arrow-down"></i>Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>     
+<br>
+<hr>
+
+<div id="disclaimer" class="container-fluid outro">
+<div class="row">
+<div class="col-lg-6 order-lg-1">
+<img class="img-fluid" src="{% static 'Assets/imgs/disclaimer.jpg' %}" alt="Alienware-Full-Set">
+</div>
+<div class="col-lg-6 order-lg-2 mt-5">
+<h1 class="intro-h1 text-info">This is an Alienware themed website</h1>
+<p class="outro-p">Most images you see on here along wih the information about the products belong to <a href="https://www.dell.com/en-us"><img src="{% static 'Assets/imgs/icons8-dell-32.png' %}"></a>
+Technologies. This is simply my personal E-commerce project, themed behind Dell's Alienware excellent brand.</p> 
+
+<p class="outro-p">You can't actually buy anything from here. If you like
+their products, go to this <a style="color: #5bc0de;" target="_blank" href="https://www.dell.com/en-us/shop/dell-laptops/sf/alienware-laptops">link</a> and browse their awesome collection! </p>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+
+
+<script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+<script src="{% static 'Assets/js/AnimationFunctions.js' %}"></script>
+
+
+</body>
+</html>
