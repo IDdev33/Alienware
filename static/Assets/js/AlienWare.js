@@ -39,7 +39,7 @@ function updateUserOrder(productId, action) {
 
       // Update the cart items and total price on the cart page
       updateCartUI(data);
-      
+
       // Update the total price in the footer
       var totalElement = document.querySelector('.shopping-cart-footer .total');
       var totalPriceFormatted = data.cartTotal ? data.cartTotal.toFixed(2) : '';
@@ -95,6 +95,14 @@ function updateCartUI(data) {
   var totalElement = document.querySelector('.shopping-cart-footer .total');
   var totalPriceFormatted = data.cartTotal ? data.cartTotal.toFixed(2) : '';
   totalElement.textContent = 'Total: $' + totalPriceFormatted;
+
+   // Hide or show the checkout link based on the cart total
+  var checkoutLink = document.getElementById('checkout');
+  if (data.cartTotal > 0) {
+    checkoutLink.style.display = 'inline';
+  } else {
+    checkoutLink.style.display = 'none';
+  }
 
   // Handle remove button click event
   var removeButtons = document.querySelectorAll('.remove-from-cart');
@@ -163,6 +171,7 @@ cartItemsContainer.addEventListener('click', function (event) {
     console.log('USER', user);
   }
 });
+
 
 
 
