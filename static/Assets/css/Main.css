@@ -362,20 +362,37 @@ display: flex;
 justify-content: center;
 }
 .description{
-width: 40%;
+width: 50%;
 }
 
 /* Responsive Media Query For Mobile Phones */
-@media only screen and (max-width: 600px){
+
+
+
+
+
+
+
+@media (min-width: 350px) and (max-width: 600px){
 p.firstp::first-letter {
 font-size: 30px;
 color: #5bc0de;
 }
+
+
 thead th{
   width: 20%;
 }
 .shop-items{
-  width: 95%;
+  width: 100%;
+  margin: 0 auto;
+}
+.shop-item{
+  width: 90%;
+  margin: 0 auto;
+}
+.stars{
+  width: 100%;
 }
 
 .img-fluid{
@@ -415,7 +432,7 @@ margin-right: 10px;
 , .chair-carousel, .desktop-carousel, .monitor-carousel, .bag-carousel{
 margin: 0 auto;
 display: flex;
-width: 90%;
+width: 100%;
 justify-content: center;
 flex-direction: column;
 }
@@ -428,14 +445,45 @@ font-size: 15px;
 #cart-img{
 width: 32px;
 }
+.fa-star{
+  font-size: 14px;
+}
+.review {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.fa-star-half-alt{
+  font-size: 14px;
+}
+#price{
+  font-size: 20px;
+}
+.add-btn{
+  font-size: 18px!important;
+  display: block;
+  margin: 0 auto;
+}
+
+.review-stars {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+  width: 40%;
+}
 
 .description{
 margin: 0 auto;
-width: 80%;
+width: 100%;
 }
 .carousel{
-width: 350px;
-margin: 0 auto;
+width: 70% !important;
+margin: 0 auto !important;
 }
 .register{
 border: none;
@@ -501,7 +549,7 @@ margin-right: 10px;
 .laptop-carousel, .headphones-carousel, .keyboard-carousel .mouse-carousel,
 .chair-carousel, .bag-carousel, .monitor-carousel, .desktop-carousel{
 margin: 0 auto;
-width: 90%;
+width: 100%;
 display: flex;
 justify-content: center;
 flex-direction: column;

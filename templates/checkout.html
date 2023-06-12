@@ -83,7 +83,7 @@
     <div class="row">
        
     <div class="form-field col-6">
-        <label for="ccn" class="col-form-label">Credit Card Number</label>    
+        <label for="ccn" class="col-form-label">Card Number</label>    
         <input required autocomplete="off" name="ccn" class="form-control" id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" required maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
     </div>
     <div class="form-field col-6">
@@ -136,6 +136,24 @@
 
 <script src="{% static 'Assets/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'Assets/js/AlienWare.js' %}" defer></script>
+<script>
+    document.getElementById('ccn').addEventListener('input', function (e) {
+  var target = e.target;
+  var input = target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+  var cardNumber = input.substr(0, 16);
+  var formatted = '';
+
+  for (var i = 0; i < cardNumber.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formatted += ' ';
+    }
+    formatted += cardNumber[i];
+  }
+
+  target.value = formatted;
+});
+
+</script>
 
 
 

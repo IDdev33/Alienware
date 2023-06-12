@@ -166,6 +166,11 @@ p li, ul li, ol li {
     .content, .content-wrap {
         padding: 10px !important;
     }
+    #home, #print{
+        margin: 0 auto!important;
+        
+    }
+
 
     .invoice {
         width: 100% !important;

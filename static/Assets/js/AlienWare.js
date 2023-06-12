@@ -84,7 +84,7 @@ function updateCartUI(data) {
         </td>
         <td class="text-center text-lg text-medium">&nbsp;$${item.product.price}</td>
         <td class="text-center text-lg text-medium">$${totalPriceFormatted}</td>
-        <td class="text-center"><button data-product="${item.product.id}" data-action="remove" class="btn btn-danger update-cart remove-from-cart">Remove</button></td>
+        <td class="text-center"><button data-product="${item.product.id}" data-action="remove" class="btn btn-danger update-cart remove-from-cart">Del</button></td>
       `;
     } else {
       cartItemElement.innerHTML = '<td colspan="5">Item not found</td>';

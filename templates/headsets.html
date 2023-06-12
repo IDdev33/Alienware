@@ -163,20 +163,25 @@ Use an AI Noise-Cancelling Microphone to clear out ambient noise and improve com
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ headphone1.reviews_url }}" target="_blank">{{ headphone1.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating headphone1.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ headphone1.reviews_url }}" target="_blank">{{ headphone1.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating headphone1.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{headphone1.spec1}}</li>
 <li>{{headphone1.spec2}}</li>
 <li>{{headphone1.spec3}}</li>
@@ -238,20 +243,25 @@ Use an AI Noise-Cancelling Microphone to clear out ambient noise and improve com
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ headphone2.reviews_url }}" target="_blank">{{ headphone2.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating headphone2.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ headphone2.reviews_url }}" target="_blank">{{ headphone2.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating headphone2.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{headphone2.spec1}}</li>
 <li>{{headphone2.spec2}}</li>
 <li>{{headphone2.spec3}}</li>
@@ -307,20 +317,25 @@ Use an AI Noise-Cancelling Microphone to clear out ambient noise and improve com
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ headphone3.reviews_url }}" target="_blank">{{ headphone3.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating headphone3.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ headphone3.reviews_url }}" target="_blank">{{ headphone3.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating headphone3.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{headphone3.spec1}}</li>
 <li>{{headphone3.spec2}}</li>
 <li>{{headphone3.spec3}}</li>

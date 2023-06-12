@@ -170,20 +170,25 @@ removing any alignment and hardware complexities for a hassle-free, one-person p
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ chair1.reviews_url }}" target="_blank">{{ chair1.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating chair1.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ chair1.reviews_url }}" target="_blank">{{ chair1.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating chair1.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{chair1.spec1}}</li>
 <li>{{chair1.spec2}}</li>
 <li>{{chair1.spec3}}</li>
@@ -244,20 +249,25 @@ removing any alignment and hardware complexities for a hassle-free, one-person p
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ chair2.reviews_url }}" target="_blank">{{ chair2.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating chair2.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ chair2.reviews_url }}" target="_blank">{{ chair2.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating chair2.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{chair2.spec1}}</li>
 <li>{{chair2.spec2}}</li>
 <li>{{chair2.spec3}}</li>
@@ -311,20 +321,25 @@ removing any alignment and hardware complexities for a hassle-free, one-person p
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ chair3.reviews_url }}" target="_blank">{{ chair3.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating chair3.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ chair3.reviews_url }}" target="_blank">{{ chair3.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating chair3.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{chair3.spec1}}</li>
 <li>{{chair3.spec2}}</li>
 <li>{{chair3.spec3}}</li>
@@ -378,20 +393,25 @@ removing any alignment and hardware complexities for a hassle-free, one-person p
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ chair4.reviews_url }}" target="_blank">{{ chair4.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating chair4.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ chair4.reviews_url }}" target="_blank">{{ chair4.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating chair4.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{chair4.spec1}}</li>
 <li>{{chair4.spec2}}</li>
 <li>{{chair4.spec3}}</li>

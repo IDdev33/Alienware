@@ -23,16 +23,16 @@
 
 <!-- Shopping Cart-->
 
-<div style="border-radius: 10px;" class="container border border-info p-3 shadow-lg bg-white padding-bottom-3x mb-5">
+<div style="border-radius: 10px;" class="container border border-info shadow-lg bg-white padding-bottom-3x mb-5">
     <div class="table-responsive shopping-cart">
     <table class="table">
     <thead>
     <tr>
     <th>Product Name</th>
-    <th class="text-center">Quantity</th>
-    <th class="text-center">Price</th>
-    <th class="text-center">Total</th>
-    <th class="text-center">Clear Cart</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total</th>
+    <th>Clear Cart</th>
     </tr>
     </thead>
     <tbody>
@@ -52,7 +52,7 @@
         <p data-product={{item.product.id}} data-action="decrease" class="update-cart arrows"><i class="fa fa-arrow-down" style="color: #5bc0de;"></i></p>
     <td class="text-center text-lg text-medium">&nbsp;${{item.product.price}}</td>
     <td class="text-center text-lg text-medium">${{item.get_total}}</td>
-    <td class="text-center"><button data-product="{{item.product.id}}" data-action='remove' class="btn btn-danger update-cart remove-from-cart">Remove</button></td>
+    <td class="text-center"><button data-product="{{item.product.id}}" data-action='remove' class="btn btn-danger update-cart remove-from-cart">Del</button></td>
     </tr>
     {% endfor %}
     </tbody>

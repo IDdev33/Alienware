@@ -167,20 +167,25 @@ gold-plated electrical contact enclosures, 1.8mm key-travel and a 15 million key
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ laptop1.reviews_url }}" target="_blank">{{ laptop1.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating laptop1.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ laptop1.reviews_url }}" target="_blank">{{ laptop1.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating laptop1.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{laptop1.spec1}}</li>
 <li>{{laptop1.spec2}}</li>
 <li>{{laptop1.spec3}}</li>
@@ -242,20 +247,25 @@ gold-plated electrical contact enclosures, 1.8mm key-travel and a 15 million key
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ laptop2.reviews_url }}" target="_blank">{{ laptop2.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating laptop2.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ laptop2.reviews_url }}" target="_blank">{{ laptop2.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating laptop2.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{laptop2.spec1}}</li>
 <li>{{laptop2.spec2}}</li>
 <li>{{laptop2.spec3}}</li>
@@ -313,20 +323,25 @@ gold-plated electrical contact enclosures, 1.8mm key-travel and a 15 million key
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ laptop3.reviews_url }}" target="_blank">{{ laptop3.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating laptop3.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ laptop3.reviews_url }}" target="_blank">{{ laptop3.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating laptop3.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{laptop3.spec1}}</li>
 <li>{{laptop3.spec2}}</li>
 <li>{{laptop3.spec3}}</li>
@@ -384,20 +399,25 @@ gold-plated electrical contact enclosures, 1.8mm key-travel and a 15 million key
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ laptop4.reviews_url }}" target="_blank">{{ laptop4.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating laptop4.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ laptop4.reviews_url }}" target="_blank">{{ laptop4.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating laptop4.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{laptop4.spec1}}</li>
 <li>{{laptop4.spec2}}</li>
 <li>{{laptop4.spec3}}</li>

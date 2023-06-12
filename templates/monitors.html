@@ -145,7 +145,7 @@ and the ability to adjust the gamma settings.
 </div>
 <div class="carousel-inner" data-mdb-interval="1000">
 <div class="carousel-item active" data-product-id="6">
-<img src="{{ monitor1.image.all.0.image.url }}" class="d-block w-100 shop-item-image" alt="{{monitor1.name}}">
+<img src="{{ monitor1.image.all.0.image.url }}" class="d-block w-100 img-fluid shop-item-image" alt="{{monitor1.name}}">
 </div>
 <div class="carousel-item">
 <img src="{{ monitor1.image.all.1.image.url }}" class="d-block w-100 shop-item-image" alt="{{monitor1.name}}">
@@ -170,39 +170,46 @@ and the ability to adjust the gamma settings.
 </button>
 </div> 
 <div class="description">
-<h3>Specs:</h3>
-
-<br>
-<ul>
-<li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-  <a href="{{ monitor1.reviews_url }}" target="_blank">{{ monitor1.reviews_score }}</a>
-  <div style="display: inline;" class="stars">
-      {% star_rating monitor1.reviews_score as star_rating %}
-      {% for star in star_rating.stars %}
-          {% if star == 'full' %}
-              <i class="fa-solid fa-star text-info"></i>
-          {% elif star == 'half' %}
-              <i class="fa-solid fa-star-half-alt text-info"></i>
-          {% else %}
-              <i class="fa-regular fa-star"></i>
-          {% endif %}
-      {% endfor %}
-  </div></li>
-<li>{{monitor1.spec1}}</li>
-<li>{{monitor1.spec2}}</li>
-<li>{{monitor1.spec3}}</li>
-<li>{{monitor1.spec4}}</li>
-<li id="price">Price:<div class="shop-item-price">&nbsp;${{monitor1.price}}</div></li>
-</ul>
-<div class="btn-div">
-<button data-product="{{monitor1.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button"><i class="fa fa-cart-arrow-down"></i>Add to Cart</button>
-</div>
-</div>
-</div>
-</div>
-</div>     
-<br>
-<hr>
+    <h3>Specs:</h3>
+    <br>
+    <ul>
+      <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ monitor1.reviews_url }}" target="_blank">{{ monitor1.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating monitor1.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
+                <i class="fa-solid fa-star text-info"></i>
+              {% elif star == 'half' %}
+                <i class="fa-solid fa-star-half-alt text-info"></i>
+              {% else %}
+                <i class="fa-regular fa-star"></i>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
+      <li>{{monitor1.spec1}}</li>
+      <li>{{monitor1.spec2}}</li>
+      <li>{{monitor1.spec3}}</li>
+      <li>{{monitor1.spec4}}</li>
+      <li id="price">Price:<div class="shop-item-price">&nbsp;${{monitor1.price}}</div></li>
+    </ul>
+    <div class="btn-div">
+      <button data-product="{{monitor1.id}}" data-action="add" class="add-btn update-cart btn border border-info border-2 rounded-pill" type="button">
+        <i class="fa fa-cart-arrow-down"></i>Add to Cart
+      </button>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <br>
+  <hr>
+  
 
 <div class="shop-items border border-info p-3 shadow-lg bg-white">
 <div class="shop-item">
@@ -247,20 +254,25 @@ and the ability to adjust the gamma settings.
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ monitor2.reviews_url }}" target="_blank">{{ monitor2.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating monitor2.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ monitor2.reviews_url }}" target="_blank">{{ monitor2.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating monitor2.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{monitor2.spec1}}</li>
 <li>{{monitor2.spec2}}</li>
 <li>{{monitor2.spec3}}</li>
@@ -320,20 +332,25 @@ and the ability to adjust the gamma settings.
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ monitor3.reviews_url }}" target="_blank">{{ monitor3.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating monitor3.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ monitor3.reviews_url }}" target="_blank">{{ monitor3.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating monitor3.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li>
 <li>{{monitor3.spec1}}</li>
 <li>{{monitor3.spec2}}</li>
 <li>{{monitor3.spec3}}</li>
@@ -390,20 +407,25 @@ and the ability to adjust the gamma settings.
 <h3>Specs:</h3>
 <br>
 <ul>
-  <li style="font-size: 20px;" class="fw-bold">Reviews: {% load my_tags %}
-    <a href="{{ monitor4.reviews_url }}" target="_blank">{{ monitor4.reviews_score }}</a>
-    <div style="display: inline;" class="stars">
-        {% star_rating monitor4.reviews_score as star_rating %}
-        {% for star in star_rating.stars %}
-            {% if star == 'full' %}
+    <li class="fw-bold review">
+        Reviews:
+        <span class="review-stars">
+          {% load my_tags %}
+          <a class="review_url" href="{{ monitor4.reviews_url }}" target="_blank">{{ monitor4.reviews_score }}</a>
+          <div class="stars">
+            {% star_rating monitor4.reviews_score as star_rating %}
+            {% for star in star_rating.stars %}
+              {% if star == 'full' %}
                 <i class="fa-solid fa-star text-info"></i>
-            {% elif star == 'half' %}
+              {% elif star == 'half' %}
                 <i class="fa-solid fa-star-half-alt text-info"></i>
-            {% else %}
+              {% else %}
                 <i class="fa-regular fa-star"></i>
-            {% endif %}
-        {% endfor %}
-    </div></li>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </span>
+      </li4
 <li>{{monitor4.spec1}}</li>
 <li>{{monitor4.spec2}}</li>
 <li>{{monitor4.spec3}}</li>
