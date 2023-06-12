@@ -180,4 +180,3 @@ cartItemsContainer.addEventListener('click', function (event) {
 
 
 
-

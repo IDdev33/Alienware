@@ -21,8 +21,12 @@
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
+<a id="cart-mobile" class="nav-link" href="/cart">
+  <i class="fa fa-shopping-cart"></i> Cart
+  <p id="cart-total">{{ cartItems }}</p>
+</a>
 
-<div class="collapse navbar-collapse" id="navbarNav">
+<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
 <a target="_blank" class="navbar-brand center-mobile me-auto"  href="https://www.dell.com/en-us/shop/dell-laptops/sf/alienware-laptops">
 <img id="alien-logo" class="ms-5" src="{% static 'Assets/imgs/alienlogo.png' %}" />
 </a>
@@ -67,10 +71,7 @@ Register
 </li>
 </ul>
 {% else %}
-{% endif %}    
-<li class="nav-item">
-<a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i> Cart<p id="cart-total">{{cartItems}}</p></a>
-</li>
+{% endif %}
 </ul>
 </div>
 </div>

@@ -42,5 +42,33 @@ function getCookie(name) {
 
     console.log('Cart:', cart)
 </script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+  var cartMobile = document.getElementById('cart-mobile');
+  var cartLink = document.createElement('li');
+  cartLink.className = 'nav-item';
+  cartLink.innerHTML = '<a class="nav-link" href="/cart" id="cart-link"><i class="fa fa-shopping-cart"></i> Cart<p id="cart-total">{{ cartItems }}</p></a>';
+
+  if (window.innerWidth > 992) {
+    cartMobile.style.display = 'none';
+    var navBar = document.getElementsByClassName('navbar-nav')[0];
+    navBar.appendChild(cartLink);
+  }
+  
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 992) {
+      cartMobile.style.display = 'none';
+      var navBar = document.getElementsByClassName('navbar-nav')[0];
+      navBar.appendChild(cartLink);
+    } else {
+      cartMobile.style.display = '';
+      cartLink.remove();
+    }
+  });
+});
+
+
+</script>
+    
 </head>
 <body></body>
