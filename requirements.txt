@@ -1,1 +1,4 @@
-Django==4.2.2
+Django==4.2
+djangorestframework==3.14.0
+Pillow==9.5.0
+django-clearcache==1.2.1
