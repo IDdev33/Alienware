@@ -12,7 +12,6 @@ all: unset;
 .add-btn {
 font-size: 20px;
 padding: 5px;
-margin-left: 30px;
 transition: 0.2s;
 }
 #btn-back-to-top {
@@ -101,7 +100,7 @@ font-family: sans-serif;
   border-left: 1px solid #5bc0de;
 }
 .shop-items{
-  width: 80%; 
+  max-width: 70%; 
   margin: 0 auto; 
   border-radius: 10px;
 }
@@ -145,7 +144,7 @@ font-family: sans-serif;
 }
 .intro-h1{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     text-decoration: none;
 }
@@ -182,8 +181,8 @@ font-family: sans-serif;
 /* Headers (h1,h2,h3 etc) Styling */
 h1 {
 text-align: center;
-font-family: monospace;
-font-size: 24px;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 26px !important;
 font-weight: bold;
 }
 h2 {
@@ -280,7 +279,8 @@ color: #42ba96;
 
 /* Images Section */
 #alien-logo{
-  width: 40px;
+  width: 35px;
+  margin-left: 150px;
 }
 .row-image{
   max-width:130px;
@@ -327,42 +327,22 @@ background-color: #5bc0de;
 /* Carousels Section */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-height: 100px;
-width: 100%;
+border-radius: 15px;
 background-size: 100%, 100%;
 background-image: none;
+background-color: #5bc0de;
 }
-.carousel-control-next-icon:after
-{
-content: '>';
-font-size: 55px;
-color: #5bc0de;
-}
-.carousel-control-prev-icon:after {
-content: '<';
-font-size: 55px;
-color: #5bc0de;
-}
-.carousel-control-next-icon {
-margin-right: -120px;
-}
-.carousel-control-prev-icon {
-margin-left: -120px;
-}
+
+
 .d-block {
 min-height: 300px;
 }
-.carousel{
-width: 400px;
-margin-right: 50px;
-}
-.laptop-carousel, .headphones-carousel, .keyboard-carousel, .mouse-carousel
-, .chair-carousel, .desktop-carousel, .monitor-carousel, .bag-carousel{
-display: flex;
-justify-content: center;
-}
-.description{
-width: 50%;
+
+
+
+.shop-item-image{
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* Responsive Media Query For Mobile Phones */
@@ -384,13 +364,10 @@ thead th{
   width: 20%;
 }
 .shop-items{
-  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
-.shop-item{
-  width: 90%;
-  margin: 0 auto;
-}
+
 .stars{
   width: 100%;
 }
@@ -428,17 +405,11 @@ margin-left: 10px;
 margin-right: 10px;
 
 }
-.laptop-carousel, .headphones-carousel, .keyboard-carousel, .mouse-carousel
-, .chair-carousel, .desktop-carousel, .monitor-carousel, .bag-carousel{
-margin: 0 auto;
-display: flex;
-width: 100%;
-justify-content: center;
-flex-direction: column;
+#alien-logo{
+  display: none;
 }
-.btn-div{
-text-align: center;
-}
+
+
 li{
 font-size: 15px;
 }
@@ -477,14 +448,7 @@ width: 32px;
   width: 40%;
 }
 
-.description{
-margin: 0 auto;
-width: 100%;
-}
-.carousel{
-width: 70% !important;
-margin: 0 auto !important;
-}
+
 .register{
 border: none;
 }
@@ -517,11 +481,12 @@ color: #5bc0de;
   align-items: center;
 }
 .shop-items{
-  width: 70%;
+  max-width: 100%;
+  margin: 0 auto;
 }
-.btn-div{
-  text-align: center;
-  }
+#alien-logo{
+  display: none;
+}
 
 .img-fluid{
   display: block;
@@ -546,14 +511,7 @@ margin-left: 10px;
 margin-right: 10px;
 }
 
-.laptop-carousel, .headphones-carousel, .keyboard-carousel .mouse-carousel,
-.chair-carousel, .bag-carousel, .monitor-carousel, .desktop-carousel{
-margin: 0 auto;
-width: 100%;
-display: flex;
-justify-content: center;
-flex-direction: column;
-}
+
 li{
 font-size: 15px;
 }
@@ -561,14 +519,6 @@ font-size: 15px;
 width: 32px;
 }
 
-.description{
-margin: 0 auto;
-width: 80%;
-}
-.carousel{
-width: 350px;
-margin: 0 auto;
-}
 .register{
 border: none;
 }

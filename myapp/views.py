@@ -8,6 +8,7 @@ import json
 import random
 from django.utils import timezone
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 
 
@@ -107,12 +108,14 @@ def cartData(request):
 
 
 # Products
-def desktops(request):
+#Universal function to be used for all product templates
+def get_product_details(request, products, template_name):
     data = cartData(request)
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
     has_profile_picture = False
+
     if request.user.is_authenticated:
         try:
             profile = request.user.profile
@@ -120,232 +123,109 @@ def desktops(request):
                 has_profile_picture = True
         except Profile.DoesNotExist:
             pass
-    desktop1 = Product.objects.filter(name='Alienware Aurora R15').first()
-    desktop2 = Product.objects.filter(name='Alienware Aurora R13').first()
-    desktop3 = Product.objects.filter(name='Alienware Aurora Ryzen™ Edition R14').first()
-    desktop4 = Product.objects.filter(name='Alienware Aurora R15 Gaming Desktop').first()
-    product = Product.objects.all()
-    context ={
-        'desktop1':  desktop1,
-        'desktop2':  desktop2,
-        'desktop3':  desktop3,
-        'desktop4':  desktop4,
+
+    product_details = {product.name: product for product in products}
+
+    context = {
         'has_profile_picture': has_profile_picture,
-        'product': product,
+        'product_details': product_details,
         'cartItems': cartItems,
     }
-    return render(request, 'desktops.html', context)
+
+    return render(request, template_name, context)
+
+
+
+def desktops(request):
+    product_names = [
+        'Alienware Aurora R15',
+        'Alienware Aurora R13',
+        'Alienware Aurora Ryzen™ Edition R14',
+        'Alienware Aurora R15 Gaming Desktop',
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'desktops.html')
 
 
 
 def monitors(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    monitor1 = Product.objects.filter(name='Alienware 27 Gaming Monitor - AW2723DF').first()
-    monitor2 = Product.objects.filter(name='Alienware 34 Curved QD-OLED Gaming Monitor - AW3423DWF').first()
-    monitor3 = Product.objects.filter(name='Alienware 34 Curved QD-OLED Gaming Monitor - AW3423DW').first()
-    monitor4 = Product.objects.filter(name='Alienware 38 Curved Gaming Monitor | AW3821DW').first()
-    product = Product.objects.all()
-    context ={
-        'monitor1':  monitor1,
-        'monitor2':  monitor2,
-        'monitor3':  monitor3,
-        'monitor4':  monitor4,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems,
-    }
-    return render(request, 'monitors.html', context)
+    product_names = [
+        'Alienware 27 Gaming Monitor - AW2723DF',
+        'Alienware 34 Curved QD-OLED Gaming Monitor - AW3423DWF',
+        'Alienware 34 Curved QD-OLED Gaming Monitor - AW3423DW',
+        'Alienware 38 Curved Gaming Monitor | AW3821DW',
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'monitors.html')
+   
 
 
 
 def laptops(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    laptop1 = Product.objects.filter(name='Alienware m17 R5 Gaming Laptop').first()
-    laptop2 = Product.objects.filter(name='Alienware x17 R2 Gaming Laptop').first()
-    laptop3 = Product.objects.filter(name='Alienware x14 Gaming Laptop').first()
-    laptop4 = Product.objects.filter(name='Laptop Dell Alienware Area 51M, 17.3').first()
-    product = Product.objects.all()
-    context ={
-        'laptop1':  laptop1,
-        'laptop2':  laptop2,
-        'laptop3':  laptop3,
-        'laptop4':  laptop4,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems,
-    }
-    return render(request, 'laptops.html', context)
+    product_names = [
+        'Alienware m17 R5 Gaming Laptop',
+        'Alienware x17 R2 Gaming Laptop',
+        'Alienware x14 Gaming Laptop',
+        'Laptop Dell Alienware Area 51M, 17.3'
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'laptops.html')
 
 
 
 
 def keyboards(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    keyboard1 = Product.objects.filter(name='Alienware RGB Mechanical Gaming Keyboard - AW410K').first()
-    keyboard2 = Product.objects.filter(name='Alienware Low Profile RGB Mechanical Gaming Keyboard - AW510K').first()
-    keyboard3 = Product.objects.filter(name='Alienware Tenkeyless Gaming Keyboard').first()
-    product = Product.objects.all()
-    context ={
-        'keyboard1':  keyboard1,
-        'keyboard2':  keyboard2,
-        'keyboard3':  keyboard3,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems,
-    }
-    return render(request, 'keyboards.html', context)
+    product_names = [
+        'Alienware RGB Mechanical Gaming Keyboard - AW410K',
+        'Alienware Low Profile RGB Mechanical Gaming Keyboard - AW510K',
+        'Alienware Tenkeyless Gaming Keyboard',
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'keyboards.html')
 
 
 def mice(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    mouse1 = Product.objects.filter(name='Alienware Wireless Gaming Mouse - AW620M').first()
-    mouse2 = Product.objects.filter(name='Alienware Tri-Mode Wireless Gaming Mouse - AW720M').first()
-    mouse3 = Product.objects.filter(name='Alienware Wired/Wireless Gaming Mouse | AW610M').first()
-    product = Product.objects.all()
-    context ={
-        'mouse1':  mouse1,
-        'mouse2':  mouse2,
-        'mouse3':  mouse3,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems,
-    }
-    return render(request, 'mice.html', context)
+    product_names = [
+        'Alienware Wireless Gaming Mouse - AW620M',
+        'Alienware Tri-Mode Wireless Gaming Mouse - AW720M',
+        'Alienware Wired/Wireless Gaming Mouse | AW610M',
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'mice.html')
 
 def headsets(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    headphone1 = Product.objects.filter(name='Alienware Dual Mode Wireless Gaming Headset - AW720H').first()
-    headphone2 = Product.objects.filter(name='Alienware Stereo Wired Gaming Headset - AW310H').first()
-    headphone3 = Product.objects.filter(name='Alienware AW920H Tri-Mode Wireless Headset').first()
-    product = Product.objects.all()
-    context ={
-        'headphone1':  headphone1,
-        'headphone2':  headphone2,
-        'headphone3':  headphone3,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems,
-    }
-    return render(request, 'headsets.html', context)
+    product_names = [
+        'Alienware Dual Mode Wireless Gaming Headset - AW720H',
+        'Alienware Stereo Wired Gaming Headset - AW310H',
+        'Alienware AW920H Tri-Mode Wireless Headset',
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'headsets.html')
 
 
 def chairs(request):
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    chair1 = Product.objects.filter(name='Alienware S3800 Comfort Gaming Chair').first()
-    chair2 = Product.objects.filter(name='Alienware P4500 Gaming Chair').first()
-    chair3 = Product.objects.filter(name='Alienware S5800 Ergonomic Gaming Chair').first()
-    chair4 = Product.objects.filter(name='Alienware S5000 Gaming Chair').first()
-    product = Product.objects.all()
-    context ={
-        'chair1':  chair1,
-        'chair2':  chair2,
-        'chair3':  chair3,
-        'chair4':  chair4,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems
-    }
-    return render(request, 'chairs.html', context)
+    product_names = [
+        'Alienware S3800 Comfort Gaming Chair',
+        'Alienware P4500 Gaming Chair',
+        'Alienware S5800 Ergonomic Gaming Chair',
+        'Alienware S5000 Gaming Chair'
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'chairs.html')
+
 
 
 def bags(request):
-    try:
-        cart = json.loads(request.COOKIES['cart'])
-    except:
-        cart = {}
-    data = cartData(request)
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']        
-    has_profile_picture = False
-    if request.user.is_authenticated:
-        try:
-            profile = request.user.profile
-            if profile.profile_picture:
-                has_profile_picture = True
-        except Profile.DoesNotExist:
-            pass
-    bag1 = Product.objects.filter(name='Wenger Mainframe - Laptop carrying case - 16-inch').first()
-    bag2 = Product.objects.filter(name='Dell EcoLoop Pro Sleeve 15-16').first()
-    bag3 = Product.objects.filter(name='Dell Gaming Backpack – GM1720PM').first()
-    bag4 = Product.objects.filter(name='Alienware Horizon Travel Backpack 18').first()
-    product = Product.objects.all()
-    context ={
-        'bag1':  bag1,
-        'bag2':  bag2,
-        'bag3':  bag3,
-        'bag4':  bag4,
-        'has_profile_picture': has_profile_picture,
-        'product': product,
-        'cartItems': cartItems
-    }
-    return render(request, 'bags.html', context)
+    product_names = [
+        'Wenger Mainframe - Laptop carrying case - 16-inch',
+        'Dell EcoLoop Pro Sleeve 15-16',
+        'Dell Gaming Backpack – GM1720PM',
+        'Alienware Horizon Travel Backpack 18'
+    ]
+    products = [get_object_or_404(Product, name=name) for name in product_names]
+    return get_product_details(request, products, 'bags.html')
+
+    
 
 
 def index(request):

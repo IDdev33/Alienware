@@ -70,8 +70,7 @@ class Customer(models.Model):
         if self.user:
             self.email = self.user.email
         super().save(*args, **kwargs)
-    def __str__(self):
-        return self.first_name and self.last_name
+    
     
     
 class Order(models.Model):

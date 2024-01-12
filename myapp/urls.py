@@ -16,6 +16,6 @@ urlpatterns = [
     path('mice', views.mice, name='Mice'),
     path('headsets', views.headsets, name='Headsets'),
     path('chairs', views.chairs, name='Chairs'),
-    path('bags', views.bags, name='Bags'),
+    path('bags/', views.bags, name='bags'),
     path('cart', views.cart, name='cart')
     ]
